@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Business Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #F0F0F5;
+      padding: 1.5rem;
+    }
+    .profile-card {
+      width: 100%;
+      max-width: 400px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+      display: none; /* hidden until loaded */
+      animation: popIn 0.5s ease-out forwards;
+    }
+    @keyframes popIn {
+      0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .profile-banner {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(145deg, #1E1B8B 0%, #3B30E8 100%);
+      position: relative;
+    }
+    .profile-banner::after {
+      content: '';
+      position: absolute;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(100,180,255,0.2) 0%, transparent 60%);
+    }
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      background: #fff;
+      border-radius: 50%;
+      margin: -45px auto 0;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--blue);
+      border: 4px solid #fff;
+    }
+    .profile-body {
+      padding: 1.5rem 2rem 2.5rem;
+      text-align: center;
+    }
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
+    }
+    .profile-job {
+      font-size: 0.95rem;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    .profile-bio {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .profile-action {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #111827; 
+      color: #fff;
+      text-decoration: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .profile-action:hover {
+      background: #000;
+      transform: translateY(-1px);
+    }
+    .profile-footer {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    #errorState, #loadingState {
+      text-align: center;
+      margin-top: 5rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 3px solid rgba(59,48,232,0.3);
+      border-radius: 50%;
+      border-top-color: var(--blue);
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loadingState">
+    <div class="spinner"></div>
+    <div>Loading profile...</div>
+  </div>
+  
+  <div id="errorState" style="display:none;">
+    <h2>Profile Not Found</h2>
+    <p>This digital card does not exist or hasn't been set up yet.</p>
+  </div>
+
+  <div class="profile-card" id="profileCard">
+    <div class="profile-banner"></div>
+    <div class="profile-avatar" id="avatarInitial">?</div>
+    <div class="profile-body">
+      <h1 class="profile-name" id="dispName">Name</h1>
+      <div class="profile-job" id="dispJob">Job Title</div>
+      <p class="profile-bio" id="dispBio">Bio</p>
+      
+      <a href="#" id="dispPhone" class="profile-action">Save Contact</a>
+    </div>
+  </div>
+  
+  <div class="profile-footer" id="profileFooter" style="display:none;">
+    Powered by NFC Profiles
+  </div>
+
+  <script type="module" src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+/* ─── Reset ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:       #3B30E8;
+  --blue-mid:   #5B4CF5;
+  --text:       #111827;
+  --muted:      #6B7280;
+  --border:     #E5E7EB;
+  --focus:      rgba(59, 48, 232, 0.18);
+  --error:      #EF4444;
+  --success:    #10B981;
+  --radius:     10px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #F0F0F5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* ─── Wrapper ─────────────────────────────────────────────── */
+.auth-wrap {
+  display: flex;
+  width: 100%;
+  max-width: 880px;
+  min-height: 560px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ─── Left Panel ──────────────────────────────────────────── */
+.auth-left {
+  flex: 0 0 45%;
+  background: linear-gradient(145deg, #1E1B8B 0%, #3B30E8 40%, #6B5EFA 75%, #4FC3F7 100%);
+  padding: 3rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Mesh blobs inside left panel */
+.auth-left::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(100,180,255,0.25), transparent 70%);
+  top: -60px; right: -60px;
+  border-radius: 50%;
+}
+.auth-left::after {
+  content: '';
+  position: absolute;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent 70%);
+  bottom: 0; left: -40px;
+  border-radius: 50%;
+}
+
+.left-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+}
+
+.left-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.left-content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.left-content p {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.left-footer {
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.45);
+}
+
+/* ─── Right Panel ─────────────────────────────────────────── */
+.auth-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background: #fff;
+}
+
+.auth-form-wrap {
+  width: 100%;
+  max-width: 360px;
+}
+
+.auth-header {
+  margin-bottom: 1.75rem;
+}
+
+.auth-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.025em;
+  margin-bottom: 0.3rem;
+}
+
+.auth-header p {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ─── Form Fields ─────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+input::placeholder { color: #C4C9D4; }
+
+input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--focus);
+}
+
+/* ─── Error ───────────────────────────────────────────────── */
+.error-message {
+  font-size: 0.82rem;
+  min-height: 1.1rem;
+  color: var(--error);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.error-message.success { color: var(--success); }
+
+/* ─── Button Row ──────────────────────────────────────────── */
+.btn-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.72rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s, opacity 0.15s;
+  user-select: none;
+}
+
+.btn:hover:not(:disabled) { transform: translateY(-1px); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* Primary */
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 3px 14px rgba(59,48,232,0.3);
+}
+.btn-primary:hover:not(:disabled) {
+  background: #2f25cc;
+  box-shadow: 0 5px 18px rgba(59,48,232,0.42);
+}
+
+/* Outline */
+.btn-outline {
+  background: #fff;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+}
+.btn-outline:hover:not(:disabled) { background: #F9FAFB; }
+
+/* ─── Spinner  ────────────────────────────────────────────── */
+/* Hidden by default — shown only when loading class is active */
+.btn-spinner { display: none; }
+
+.btn-primary.loading .btn-label  { display: none; }
+.btn-primary.loading .btn-spinner {
+  display: inline-block;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ─── Divider ─────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 1.1rem;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── OAuth Row ───────────────────────────────────────────── */
+.oauth-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn-oauth {
+  flex: 1;
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 0.65rem 0.75rem;
+  gap: 0.5rem;
+}
+
+.btn-google {
+  background: #fff;
+  color: #3C4043;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.btn-google:hover:not(:disabled) { background: #F8F8F8; }
+
+.btn-github {
+  background: #24292e;
+  color: #fff;
+  border: 1.5px solid #24292e;
+}
+.btn-github:hover:not(:disabled) { background: #2f363d; }
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .auth-left  { display: none; }
+  .auth-right { padding: 2rem 1.5rem; }
+  .oauth-row  { flex-direction: column; }
+  .auth-wrap  { max-width: 400px; }
+}

@@ -13,6 +13,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
         # Rewrite extensionless paths to .html internally
         if url_path != '/' and len(url_path.split('.')) == 1:
             possible_file = url_path.lstrip('/') + '.html'
+            print(f"Checking for: {possible_file}")
             if os.path.exists(possible_file):
                 # We modify the path so the base class serves the html file
                 # But we retain queries and hashes on the original self.path
